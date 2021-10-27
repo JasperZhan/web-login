@@ -22,18 +22,17 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tel` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号',
-  `email` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱',
-  `password` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
-  `id_check` int(11) NULL DEFAULT 0 COMMENT '判断用户是否实名认证（0：未实名认证）',
-  `face_token` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '人脸唯一标识',
-  `third_login_type` int(11) NULL DEFAULT 0 COMMENT '三方登陆类型（0：未绑定三方登陆）',
-  `third_login_id` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '三方登陆ID',
-  `create_date` datetime(0) NULL DEFAULT NULL,
-  `update_date` datetime(0) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `uk_tel`(`tel`) USING BTREE COMMENT '手机号码唯一'
+                         `id` int(11) NOT NULL AUTO_INCREMENT,
+                         `tel` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号',
+                         `email` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱',
+                         `password` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
+                         `id_check` int(11) NULL DEFAULT 0 COMMENT '判断用户是否实名认证（0：未实名认证）',
+                         `face_token` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '人脸唯一标识',
+                         `third_login_type` int(11) NULL DEFAULT 0 COMMENT '三方登陆类型（0：未绑定三方登陆）',
+                         `third_login_id` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '三方登陆ID',
+                         `create_date` datetime(0) NULL DEFAULT NULL,
+                         `update_date` datetime(0) NULL DEFAULT NULL,
+                         PRIMARY KEY (`id`)
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
