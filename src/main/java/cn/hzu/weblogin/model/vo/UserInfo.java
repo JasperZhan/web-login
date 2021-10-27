@@ -10,7 +10,6 @@ import java.util.Date;
  * @author: Hzu_rang
  * @createDate: 2021/10/25
  */
-
 @Data
 public class UserInfo {
     /**
