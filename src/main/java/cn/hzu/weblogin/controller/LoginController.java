@@ -13,9 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-
+/**
+ * @className: LoginController
+ * @description: 用户登录接口
+ * @author: Hzu_rang
+ * @createDate: 2021/10/25
+ */
 @RestController
-public class UserController {
+public class LoginController {
     public static final String SESSION_NAME = "userInfo";
     @Autowired
     private UserService userService;
