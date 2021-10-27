@@ -1,0 +1,85 @@
+spring:
+  application:
+    name: web-login
+
+  # MySQL 配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver # MySQL驱动，无需修改
+    url: jdbc:mysql://localhost:3306/login?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2B8
+    username: root # 数据库连接名
+    password: root # 数据库连接密码
+
+  # Redis 配置
+  redis:
+    host: 127.0.0.1 # Redis地址，本地为127.0.0.1
+    port: 6379 # Redis端口号，默认为6379
+    password: # Redis密码，没有请保持为空
+    timeout: 60000
+    lettuce:
+      pool:
+        max-active: 10 # 最大连接数
+        max-idle: 5 # 最大空闲连接 默认8
+        min-idle: 2 # 最小空闲连接
+        max-wait: -1 # 最大连接阻塞等待时间 默认-1
+
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: true
+    prefix: classpath:/templates/
+
+  # MyBatis配置
+  mybatis:
+    mapper-locations: classpath:/mapper/**/*.xml
+    type-aliases-package: cn.hzu.weblogin.dao
+    type-enums-package: cn.hzu.weblogin.model.enums
+
+  # 服务启动
+  server:
+    port: 8080
+    # 公网暴露 IP
+    addr: http://127.0.0.1:${server.port}
+
+  # 项目配置
+  project:
+    # 腾讯云短信验证码配置
+    # sms:
+    #app-id: # 应用 SDK AppID
+    #app-key: # 应用 App Key
+    #template-id: # 短信正文ID
+    #sign: # 短信签名
+    # 短信发送分钟间隔
+    #interval-min: 1
+    # 短信有效分钟
+    #valid-min: 5
+
+    # 榛子云短信验证码配置
+    sms:
+      apiUrl: https://sms_developer.zhenzikj.com
+      appId: 110250
+      appSecret: dc594fea-b736-4568-8885-591cc678396a
+      template-id: 7129
+      # 短信发送分钟间隔
+      interval-min: 1
+      # 短信有效分钟
+      timeOut: 3
+      # 短信有效长度
+      codeLength: 6
+
+    # 百度人脸识别
+    baidu:
+      aip:
+        app-id: 25046617
+        app-key: MchWl2cAmiIk6O1042sY0mqz
+        secret-key: 9aH6U2Cq1GIlqzK2WRp6INwjhr4hpjOf
+        conn-timeout: 2000 # 连接超时ms，默认 2000
+        socket-timeout: 60000 # socket超时ms，默认60000
+        accept-score: 90 # 最低被接受的人脸置信分数[1,100]，分数越高，要求越严格，也越准确。
+
+    # 三方登陆配置
+    third-login:
+      qq:
+        app-id: 101568611
+        app-key: 2a3716583b2355aeab442f1949c9f6e1
