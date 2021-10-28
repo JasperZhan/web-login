@@ -15,7 +15,7 @@ public class UserInfo {
     /**
      * id
      */
-    private long id;
+    private Integer id;
     /**
      * 用户名
      */
