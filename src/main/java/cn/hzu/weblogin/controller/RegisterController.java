@@ -1,10 +1,14 @@
 package cn.hzu.weblogin.controller;
 
+import cn.hzu.weblogin.model.Result;
+import cn.hzu.weblogin.model.User;
 import cn.hzu.weblogin.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class RegisterController {
@@ -16,29 +20,37 @@ public class RegisterController {
         return "register";
     }
 
-    /**
-     * 用户注册
-     *
-     * @param user    传入注册用户信息
-     * @param errors  Validation的校验错误存放对象
-     * @param request 请求对象，用于操作session
-     * @return 注册结果
-     */
-//    @PostMapping("/register")
-//    public Result<User> register(@RequestBody @Valid User user, BindingResult errors, HttpServletRequest request) {
-//        Result<User> result;
-//        //如果校验有错，返回注册失败以及错误信息
-//        if (errors.hasErrors()) {
-//            result = new Result<>();
-//            result.setResultFailed(errors.getFieldError().getDefaultMessage());
-//            return result;
-//        }
-//        //调用注册服务
-//        result = userService.register(user);
-//        //如果注册成功，则设定session
-////    if (result.isSuccess()) {
-////      request.getSession().setAttribute(SESSION_NAME, result.getData());
-////    }
-//        return result;
-//    }
+
+    @ResponseBody
+    @RequestMapping("register/check")
+    public String registerCheck(String loginWay, String userNum, String userPw, HttpSession session) {
+        String retStr = "";
+        User user = new User();
+        Result<User> result = null;
+
+        System.out.println(loginWay);
+        int i = Integer.valueOf(loginWay).intValue();
+
+        switch (i) {
+            case 0:
+                user.setTel(userNum);
+                user.setPassword(userPw);
+                result = userService.registerByTel(user);
+                break;
+            case 1:
+                user.setEmail(userNum);
+                user.setPassword(userPw);
+                result = userService.registerByMail(user);
+                break;
+        }
+
+        if (result.isSuccess()) {
+            retStr = "location.href='/login'";
+        } else {
+            retStr = "alert('" + result.getMessage() + "')";
+        }
+
+        return retStr;
+    }
+
 }
