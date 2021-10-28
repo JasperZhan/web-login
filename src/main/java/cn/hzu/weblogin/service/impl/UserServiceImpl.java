@@ -4,7 +4,6 @@ import cn.hzu.weblogin.dao.UserDao;
 import cn.hzu.weblogin.model.Result;
 import cn.hzu.weblogin.model.User;
 import cn.hzu.weblogin.service.UserService;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +19,7 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public Result<User> register(User user) {
+    public Result<User> registerByTel(User user) {
         Result<User> result = new Result<>();
         //先去数据库找用户名是否存在
         User getUser = null;
@@ -34,14 +33,39 @@ public class UserServiceImpl implements UserService {
             return result;
         }
         //加密储存用户的密码
-        user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+//        DigestUtils.md5Hex(user.getPassword())
+//        user.setPassword(user.getPassword());
         //存入数据库
-        userDao.add(user);
+        userDao.addByPhone(user);
         //返回用户数据，成功消息
         result.setResultSuccess("注册用户成功！", user);
         return result;
     }
 
+    @Override
+    public Result<User> registerByMail(User user) {
+        Result<User> result = new Result<>();
+        //先去数据库找用户名是否存在
+        User getUser = null;
+        try {
+            getUser = userDao.getByEmail(user.getEmail());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (getUser != null) {
+            result.setResultFailed("该邮箱号已注册！");
+            return result;
+        }
+        //加密储存用户的密码
+//        DigestUtils.md5Hex(user.getPassword())
+//        user.setPassword(user.getPassword());
+        //存入数据库
+        userDao.addByMail(user);
+        //返回用户数据，成功消息
+        result.setResultSuccess("注册用户成功！", user);
+        return result;
+
+    }
 
     @Override
     public Result<User> loginByTel(User user) {

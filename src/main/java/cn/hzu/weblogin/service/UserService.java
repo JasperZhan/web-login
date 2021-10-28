@@ -12,12 +12,20 @@ import cn.hzu.weblogin.model.User;
 
 public interface UserService {
     /**
-     * 用户注册
+     * 用户手机注册
      *
      * @param user 用户对象
      * @return 注册结果
      */
-    Result<User> register(User user);
+    Result<User> registerByTel(User user);
+
+    /**
+     * 用户邮箱注册
+     *
+     * @param user 用户对象
+     * @return 注册结果
+     */
+    Result<User> registerByMail(User user);
 
     /**
      * 用户手机登录
