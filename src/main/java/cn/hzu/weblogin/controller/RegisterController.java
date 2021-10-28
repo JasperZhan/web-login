@@ -22,7 +22,7 @@ public class RegisterController {
 
 
     @ResponseBody
-    @RequestMapping("register/check")
+    @RequestMapping("/register/check")
     public String registerCheck(String loginWay, String userNum, String userPw, HttpSession session) {
         String retStr = "";
         User user = new User();
@@ -36,10 +36,13 @@ public class RegisterController {
                 user.setTel(userNum);
                 user.setPassword(userPw);
                 result = userService.registerByTel(user);
+                session.setAttribute("id", user.getUserId());
+                System.out.println(user.getUserId());
                 break;
             case 1:
                 user.setEmail(userNum);
                 user.setPassword(userPw);
+                session.setAttribute("id", user.getUserId());
                 result = userService.registerByMail(user);
                 break;
         }
