@@ -25,6 +25,11 @@ public class LoginController {
     @Autowired
     private UserDao userDao;
 
+    @RequestMapping("/")
+    public String tologin() {
+        return "index";
+    }
+
     @RequestMapping("/login")
     public String login() {
         return "login";
