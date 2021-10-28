@@ -6,7 +6,7 @@ import cn.hzu.weblogin.model.User;
 import cn.hzu.weblogin.service.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * @className: UserServiceImpl
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @author: Hzu_rang
  * @createDate: 2021/10/25
  */
-@Component
+@Service
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
@@ -44,9 +44,9 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Result<User> login(User user) {
+    public Result<User> loginByTel(User user) {
         Result<User> result = new Result<>();
-        //去数据库查找用户
+
         User getUser = null;
         try {
             getUser = userDao.getByPhone(user.getTel());
@@ -58,8 +58,36 @@ public class UserServiceImpl implements UserService {
             return result;
         }
         //比对密码（数据库取出用户的密码是加密的，因此要把前端传来的用户密码加密再比对）
-        if (!getUser.getPassword().equals(DigestUtils.md5Hex(user.getPassword()))) {
+        if (!getUser.getPassword().equals(user.getPassword())) {
+            System.out.println(getUser.getPassword());
+            System.out.println(user.getPassword());
             result.setResultFailed("手机号或者密码错误！");
+            return result;
+        }
+        //设定登录成功消息以及用户信息
+        result.setResultSuccess("登录成功！", getUser);
+        return result;
+    }
+
+    @Override
+    public Result<User> loginByMail(User user) {
+        Result<User> result = new Result<>();
+
+        User getUser = null;
+        try {
+            getUser = userDao.getByEmail(user.getEmail());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (getUser == null) {
+            result.setResultFailed("用户不存在！");
+            return result;
+        }
+        //比对密码（数据库取出用户的密码是加密的，因此要把前端传来的用户密码加密再比对）
+        if (!getUser.getPassword().equals(user.getPassword())) {
+            System.out.println(getUser.getPassword());
+            System.out.println(user.getPassword());
+            result.setResultFailed("邮箱号或者密码错误！");
             return result;
         }
         //设定登录成功消息以及用户信息
