@@ -7,9 +7,8 @@ import cn.hzu.weblogin.model.User;
  * @interfaceName: UserService
  * @description: 用户验证处理接口
  * @author: Hzu_rang
- * @createDate: 2021/10/23
+ * @createDate: 2021/10/28
  */
-
 public interface UserService {
     /**
      * 用户手机注册
