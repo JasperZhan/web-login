@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.hzu.weblogin.dao.UserInfoDao">
+    <resultMap id="userInfoResultMap" type="cn.hzu.weblogin.model.vo.UserInfo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="username" property="userName" jdbcType="VARCHAR"/>
+        <result column="real_name" property="real_name" jdbcType="VARCHAR"/>
+        <result column="id_card" property="id_Card" jdbcType="VARCHAR"/>
+        <result column="student_id_card" property="stu_id_Card" jdbcType="VARCHAR"/>
+        <result column="addProvince" property="addProvince" jdbcType="VARCHAR"/>
+        <result column="addCity" property="addCity" jdbcType="VARCHAR"/>
+        <result column="addDistrict" property="addDistrict" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="INTEGER"/>
+        <result column="birthday" property="birthday" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="adduserInfo" useGeneratedKeys="true" keyColumn="id" keyProperty="id"
+            parameterType="cn.hzu.weblogin.model.vo.UserInfo">
+        insert into user_info (id, real_name, id_card, addProvince, addCity, addDistrict, sex, birthday)
+        values (#{id}, #{real_name}, #{id_Card}, #{addProvince}, #{addCity}, #{addDistrict}, #{sex}, #{birthday})
+    </insert>
+
+</mapper>
