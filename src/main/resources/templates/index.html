@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+    var t = 3;//设定跳转的时间
+    setInterval("refer()", 1000); //启动1秒定时
+    function refer() {
+        if (t == 0){
+            location = "/login"; //跳转的地址
+        }
+        document.getElementById('show').innerHTML = "" + t + "秒后跳转转到登录界面"; // 显示倒计时
+        t--; // 计数器递减
+    }
+</script>
+<span id="show"></span>
+</html>
