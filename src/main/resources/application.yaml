@@ -4,10 +4,10 @@ spring:
 
   # MySQL 配置
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver # MySQL驱动，无需修改
+    driver-class-name: com.mysql.cj.jdbc.Driver # MySQL驱动，无需修改
     url: jdbc:mysql://localhost:3306/login?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2B8
     username: root # 数据库连接名
-    password: root # 数据库连接密码
+    password: 123456 # 数据库连接密码
 
   # Redis 配置
   redis:
@@ -27,31 +27,19 @@ spring:
     encoding: UTF-8
     servlet:
       content-type: text/html
-    cache: true
+    cache: false
     prefix: classpath:/templates/
 
-  # MyBatis配置
-  mybatis:
-    mapper-locations: classpath:/mapper/**/*.xml
-    type-aliases-package: cn.hzu.weblogin.dao
-    type-enums-package: cn.hzu.weblogin.model.enums
+# 服务启动
+server:
+  port: 8080
+  # 公网暴露 IP
+  address: http://127.0.0.1:${server.port}
 
-  # 服务启动
-  server:
-    port: 8080
-    # 公网暴露 IP
-    addr: http://127.0.0.1:${server.port}
+# MyBatis配置
+mybatis:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  type-aliases-package: cn.hzu.weblogin.dao
 
-  # 项目配置
-  project:
-    # 腾讯云短信验证码配置
-    # sms:
-    #app-id: # 应用 SDK AppID
-    #app-key: # 应用 App Key
-    #template-id: # 短信正文ID
-    #sign: # 短信签名
-    # 短信发送分钟间隔
-    #interval-min: 1
-    # 短信有效分钟
-    #valid-min: 5
+
 
