@@ -60,4 +60,11 @@ public interface UserDao {
      * @return 用户对象
      */
     User getByEmail(@Param("user_email") String user_email);
+
+    /**
+     * 改变实名认证状态
+     * @param id 对应的字段名
+     * @return
+     */
+    int changeId_check(Integer id, Integer check_status);
 }
