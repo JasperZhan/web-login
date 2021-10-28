@@ -14,10 +14,16 @@
         <result column="update_date" property="updateTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <insert id="add" useGeneratedKeys="true" keyColumn="id" keyProperty="userId"
+    <insert id="addByPhone" useGeneratedKeys="true" keyColumn="id" keyProperty="userId"
             parameterType="cn.hzu.weblogin.model.User">
         insert into user (tel, password)
         values (#{tel}, #{password})
+    </insert>
+
+    <insert id="addByMail" useGeneratedKeys="true" keyColumn="id" keyProperty="userId"
+            parameterType="cn.hzu.weblogin.model.User">
+        insert into user (email, password)
+        values (#{email}, #{password})
     </insert>
 
     <!--    <update id="update" parameterType="cn.hzu.weblogin.model.User">-->
