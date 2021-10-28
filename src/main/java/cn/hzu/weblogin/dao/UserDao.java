@@ -5,7 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * @interfaceName: UserDao
+ * UserDao
+ *
  * @description: 用户数据库操作接口
  * @author: Hzu_rang
  * @createDate: 2021/10/25
@@ -18,7 +19,16 @@ public interface UserDao {
      * @param user 用户对象
      * @return 新增成功记录条数
      */
-    int add(User user);
+    int addByPhone(User user);
+
+    /**
+     * 新增用户
+     *
+     * @param user 用户对象
+     * @return 新增成功记录条数
+     */
+    int addByMail(User user);
+
     /**
      * 修改用户信息
      *
@@ -26,6 +36,7 @@ public interface UserDao {
      * @return 修改成功记录条数
      */
     int update(User user);
+
     /**
      * 根据id获取用户
      *
