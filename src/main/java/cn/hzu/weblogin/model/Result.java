@@ -1,8 +1,7 @@
 package cn.hzu.weblogin.model;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.io.Serializable;
 
@@ -12,8 +11,7 @@ import java.io.Serializable;
  * @author: Hzu_rang
  * @createDate: 2021/10/23
  */
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
 public class Result<T> implements Serializable {
     /**
@@ -39,6 +37,7 @@ public class Result<T> implements Serializable {
         this.success = true;
         this.data = data;
     }
+
     /**
      * 设定结果为失败
      *
@@ -48,5 +47,11 @@ public class Result<T> implements Serializable {
         this.message = msg;
         this.success = false;
         this.data = null;
+    }
+
+    public void printResult() {
+        System.out.println(this.success);
+        System.out.println(this.data);
+        System.out.println(this.message);
     }
 }
