@@ -27,8 +27,8 @@ public class MainController {
         return mainCheck(session, model);
     }
 
-
     private String mainCheck(HttpSession session, Model model) {
+        String retStr = "";
         if (session.getAttribute("is_login") != null) {
             if (session.getAttribute("is_check") != null) {
                 User user = new User();
@@ -37,17 +37,17 @@ public class MainController {
                 if (result.isSuccess()) {
                     UserInfo userInfo = result.getData();
                     model.addAttribute("userInfo", userInfo);
-                    return "main";
+                    retStr = "redirect:main";
                 } else {
-                    return "error";
+                    retStr = "redirect:error";
                 }
-
             } else {
-                return "verify";
+                retStr = "redirect:verify";
             }
         } else {
-            return "login";
+            retStr = "redirect:login";
         }
+        return retStr;
     }
 }
 
