@@ -1,6 +1,5 @@
 package cn.hzu.weblogin.controller;
 
-import cn.hzu.weblogin.dao.UserDao;
 import cn.hzu.weblogin.model.Result;
 import cn.hzu.weblogin.model.User;
 import cn.hzu.weblogin.service.UserService;
@@ -22,13 +21,6 @@ public class LoginController {
     public static final String SESSION_NAME = "userInfo";
     @Autowired
     private UserService userService;
-    @Autowired
-    private UserDao userDao;
-
-    @RequestMapping("/")
-    public String tologin() {
-        return "index";
-    }
 
     @RequestMapping("/login")
     public String login() {
@@ -60,6 +52,7 @@ public class LoginController {
                 user.setTel(userNum);
                 user.setPassword(userPw);
                 result = userService.loginByTel(user);
+
                 break;
             case 1:
                 user.setEmail(userNum);
@@ -69,13 +62,21 @@ public class LoginController {
         }
 
         if (result.isSuccess()) {
-            retStr = "location.href='/main'";
+            session.setAttribute("user_id", result.getData().getUserId());
+            session.setAttribute("is_login", true);
+            if (result.getData().getId_Check() == 1) {
+                session.setAttribute("is_check", true);
+                retStr = "location.href='/main'";
+            } else {
+                retStr = "location.href='/verify'";
+            }
+
         } else {
             retStr = "alert('" + result.getMessage() + "')";
         }
-
+//
         return retStr;
-
+//
 //        如果登录成功，则设定session
 //        if (result.isSuccess()) {
 //            request.getSession().setAttribute(SESSION_NAME, result.getData());
