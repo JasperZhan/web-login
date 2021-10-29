@@ -41,4 +41,12 @@ public interface UserService {
      * @return boolean 是否成功
      */
     Result<User> loginByMail(User user);
+
+    /**
+     * 查找用户信息
+     *
+     * @param user 用户对象
+     * @return 查找结果
+     */
+    Result<User> getUser(User user);
 }

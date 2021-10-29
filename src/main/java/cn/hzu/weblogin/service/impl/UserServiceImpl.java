@@ -121,4 +121,24 @@ public class UserServiceImpl implements UserService {
         result.setResultSuccess("登录成功！", getUser);
         return result;
     }
+
+    @Override
+    public Result<User> getUser(User user) {
+        Result<User> result = new Result<>();
+
+        User getUser = null;
+        try {
+            getUser = userDao.getById(user.getUserId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (getUser == null) {
+            result.setResultFailed("用户不存在");
+            return result;
+        } else {
+            result.setResultSuccess("查找成功", getUser);
+            return result;
+        }
+    }
+
 }
