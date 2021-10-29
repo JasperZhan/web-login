@@ -108,12 +108,23 @@ public class UserInfoServiceImpl implements UserInfoService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
 //        //加密储存用户的密码
 //        user.setPassword(DigestUtils.md5Hex(user.getPassword()));
 //        //存入数据库
 //        userDao.add(user);
+        return resultUserInfo;
+    }
+
+    @Override
+    public Result<UserInfo> show_userInfo(User user) {
+        Result<UserInfo> resultUserInfo = new Result<>();
+        UserInfo userInfo = new UserInfo();
+        userInfo = userInfoDao.getUserInfoById(user.getUserId());
+        if (userInfo == null) {
+            resultUserInfo.setResultFailed("用户信息获取失败");
+        } else {
+            resultUserInfo.setResultSuccess("用户信息查找成功", userInfo);
+        }
         return resultUserInfo;
     }
 }

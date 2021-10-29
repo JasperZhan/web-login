@@ -18,4 +18,6 @@ public interface UserInfoService {
      * @return 实名认证结果
      */
     Result<UserInfo> verify(UserInfo userInfo);
+
+    Result<UserInfo> show_userInfo(User user);
 }
