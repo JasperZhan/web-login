@@ -19,4 +19,6 @@ public interface UserInfoDao {
      * @return 修改成功记录条数
      */
     int adduserInfo(UserInfo userInfo);
+
+    UserInfo getUserInfoById(Integer id);
 }

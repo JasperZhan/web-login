@@ -20,4 +20,9 @@
         values (#{id}, #{real_name}, #{id_Card}, #{addProvince}, #{addCity}, #{addDistrict}, #{sex}, #{birthday})
     </insert>
 
+    <select id="getUserInfoById" parameterType="Integer" resultMap="userInfoResultMap">
+        select *
+        from user_info
+        where id = #{id}
+    </select>
 </mapper>
