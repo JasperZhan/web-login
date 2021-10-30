@@ -23,13 +23,13 @@ public class RegisterController {
 
     @ResponseBody
     @RequestMapping("/register/check")
-    public String registerCheck(String loginWay, String userNum, String userPw, HttpSession session) {
+    public String registerCheck(String registerWay, String userNum, String userPw, HttpSession session) {
         String retStr = "";
         User user = new User();
         Result<User> result = null;
 
-        System.out.println(loginWay);
-        int i = Integer.valueOf(loginWay).intValue();
+        System.out.println(registerWay);
+        int i = Integer.valueOf(registerWay).intValue();
 
         switch (i) {
             case 0:
@@ -48,7 +48,7 @@ public class RegisterController {
         }
 
         if (result.isSuccess()) {
-            retStr = "location.href='/login'";
+            retStr = "redirect:verify";
         } else {
             retStr = "alert('" + result.getMessage() + "')";
         }
