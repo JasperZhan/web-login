@@ -20,7 +20,6 @@ public class RegisterController {
         return "register";
     }
 
-
     @ResponseBody
     @RequestMapping("/register/check")
     public String registerCheck(String registerWay, String userNum, String userPw, HttpSession session) {
@@ -36,19 +35,16 @@ public class RegisterController {
                 user.setTel(userNum);
                 user.setPassword(userPw);
                 result = userService.registerByTel(user);
-                session.setAttribute("id", user.getUserId());
-                System.out.println(user.getUserId());
                 break;
             case 1:
                 user.setEmail(userNum);
                 user.setPassword(userPw);
-                session.setAttribute("id", user.getUserId());
                 result = userService.registerByMail(user);
                 break;
         }
 
         if (result.isSuccess()) {
-            retStr = "redirect:verify";
+            retStr = "location.href='/login'";
         } else {
             retStr = "alert('" + result.getMessage() + "')";
         }

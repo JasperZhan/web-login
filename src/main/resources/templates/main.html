@@ -24,7 +24,8 @@
                     </div>
                     <div class="form-group col-6">
                         <label for="birthday">出身日期</label>
-                        <input class="form-control" disabled id="birthday" readonly th:value="${userInfo.birthday}"
+                        <input class="form-control" disabled id="birthday" readonly
+                               th:value="${#dates.format(userInfo.birthday, 'yyyy-MM-dd')}"
                                type="text">
                     </div>
                 </div>
