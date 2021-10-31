@@ -58,9 +58,10 @@ public class MainController {
             Result<User> result = userService.getUser(user);
             // 查询到该用户
             if (result.isSuccess()) {
+                user = result.getData();
                 // 用户未认证
                 // 1.用户注册完成之后，在完成认定过程中中途退出，出现仅注册未认定的情况，此时应该返回 认证页面
-                if (result.getData().getId_Check() == 0) {
+                if (user.getId_Check() == 0) {
                     System.out.println("用户未认证");
                     return "redirect:verify";
                 }
@@ -78,6 +79,7 @@ public class MainController {
         Result<UserInfo> resultUserInfo = userInfoService.show_userInfo(user);
         if (resultUserInfo.isSuccess()) {
             UserInfo userInfo = resultUserInfo.getData();
+            model.addAttribute("user", user);
             model.addAttribute("userInfo", userInfo);
             //数据库访问出错
         } else {
