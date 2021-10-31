@@ -1,10 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}">
+    <title>用户信息</title>
 </head>
 <body>
-<p>成功</p>
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-sm-12 col-md-8 col-lg-4">
+            <div class="m-5 p-4">
+                <h2 class="text-center">用户信息</h2>
+            </div>
+            <form>
+                <div class="row mb-3">
+                    <div class="form-group col-6">
+                        <label for="name">姓名</label>
+                        <input class="form-control" disabled id="name" readonly th:value="${userInfo.real_name}"
+                               type="text">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="birthday">出身日期</label>
+                        <input class="form-control" disabled id="birthday" readonly th:value="${userInfo.birthday}"
+                               type="text">
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="tel">手机号</label>
+                    <input class="form-control" disabled id="tel" readonly th:value="${user.tel}" type="text">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="email">邮箱号</label>
+                    <input class="form-control" disabled id="email" readonly th:value="${user.email}" type="text">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="idCard">身份证号</label>
+                    <input class="form-control" disabled id="idCard" readonly th:value="${userInfo.id_Card}"
+                           type="text">
+                </div>
+                <div class="row mb-5">
+                    <div class="form-group col-4">
+                        <label for="province">省</label>
+                        <input class="form-control" disabled id="province" readonly th:value="${userInfo.addProvince}"
+                               type="text">
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="city">市</label>
+                        <input class="form-control" disabled id="city" readonly th:value="${userInfo.addCity}"
+                               type="text">
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="district">区/县</label>
+                        <input class="form-control" disabled id="district" readonly th:value="${userInfo.addDistrict}"
+                               type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col">
+                        <button class="btn btn-primary w-100" id="confirm" type="button">确认无误</button>
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col">
+                        <button class="btn btn-primary w-100" id="logout" type="submit">退出登录</button>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+<script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../static/js/main.js" th:src="@{/js/main.js}"></script>
 </body>
 </html>
