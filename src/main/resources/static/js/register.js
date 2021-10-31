@@ -46,7 +46,7 @@ function getUserRegisterInfo() {
     }
     var para = {
         //登录方式
-        loginWay: way,
+        registerWay: way,
         //用户登录账号
         userNum: accounting,
         userPw: password,
