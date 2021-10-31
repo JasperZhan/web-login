@@ -7,22 +7,15 @@ import cn.hzu.weblogin.model.Result;
 import cn.hzu.weblogin.model.User;
 import cn.hzu.weblogin.model.vo.UserInfo;
 import cn.hzu.weblogin.service.UserInfoService;
-import cn.hzu.weblogin.service.UserService;
 import cn.hzu.weblogin.utils.HttpUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +38,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public Result<UserInfo> verify(UserInfo userInfo) {
         User user = new User();
+        user.setUserId(userInfo.getId());
 
         Result<UserInfo> resultUserInfo = new Result<>();
 
@@ -86,7 +80,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 
                 if (error_code.equals("0") && isok.equals("true")) {
                     // 保留一段更新已经实名认证成功的信息
-
                     userInfo.setAddProvince(province);
                     userInfo.setAddCity(city);
                     userInfo.setAddDistrict(district);
@@ -99,6 +92,7 @@ public class UserInfoServiceImpl implements UserInfoService {
                     userInfo.setBirthday(date);
                     resultUserInfo.setResultSuccess("实名认证成功，即将跳转！", userInfo);
                     userInfoDao.adduserInfo(userInfo);
+                    userDao.changeId_check(user.getUserId(), 1);
                 } else if (error_code.equals("0") && isok.equals("flase")) {
                     resultUserInfo.setResultFailed("实名认证信息不匹配，请重新输入！");
                 }
