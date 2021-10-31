@@ -44,7 +44,6 @@ public class LoginController {
         User user = new User();
         Result<User> result = null;
 
-        System.out.println(loginWay);
         int i = Integer.valueOf(loginWay).intValue();
 
         switch (i) {
@@ -79,6 +78,7 @@ public class LoginController {
      */
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
+        System.out.println("有");
         session.invalidate();
         return "redirect:login";
     }
