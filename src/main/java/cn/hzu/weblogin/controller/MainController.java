@@ -45,36 +45,20 @@ public class MainController {
         // 获取当前已经登录的用户id
         User user = new User();
         user.setUserId((Integer) session.getAttribute("user_id"));
+        // 获取当前用户的登录信息
+        Result<User> result = userService.getUser(user);
+        user = result.getData();
 
-        // 因为可能存在用户在 session 未过期的情况下重新进入主页
-        // 先通过 session 判断用户是否已经完成认定
-        // 可以解决反复访问数据库的问题
-        if (session.getAttribute("is_check") == null) {
+        // 查询失败，数据库错误
+        if (!result.isSuccess())
+            return "redirect:error";
 
-            // 如果用户的 session 中无认定完成数据 is_check
-            // 此时有两种情况
-
-            // 获取当前用户的登录信息
-            Result<User> result = userService.getUser(user);
-            // 查询到该用户
-            if (result.isSuccess()) {
-                user = result.getData();
-                // 用户未认证
-                // 1.用户注册完成之后，在完成认定过程中中途退出，出现仅注册未认定的情况，此时应该返回 认证页面
-                if (user.getId_Check() == 0) {
-                    System.out.println("用户未认证");
-                    return "redirect:verify";
-                }
-                // 数据库访问出错
-            } else {
-                System.out.println("查询错误1");
-                return "redirect:error";
-            }
+        // 可能存在情况，用户在注册完成未进行实名认证就退出了，此时是未认证状态
+        // 用户未认证
+        if (user.getId_Check() == 0) {
+            return "redirect:verify";
         }
 
-        // 用户已登录已认证
-        // 2.用户 session 过期之后第一次登录，未从数据库查询是否认证
-        session.setAttribute("is_check", true);
         // 从数据库查询用户的详细信息
         Result<UserInfo> resultUserInfo = userInfoService.show_userInfo(user);
         if (resultUserInfo.isSuccess()) {
