@@ -84,7 +84,7 @@ public class MainController {
             System.out.println("查询错误2");
             return "redirect:error";
         }
-        return "index";
+        return "main";
     }
 }
 
