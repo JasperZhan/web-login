@@ -30,6 +30,53 @@ spring:
     cache: false
     prefix: classpath:/templates/
 
+  project:
+    # 腾讯云短信验证码配置
+    # sms:
+    #app-id: # 应用 SDK AppID
+    #app-key: # 应用 App Key
+    #template-id: # 短信正文ID
+    #sign: # 短信签名
+    # 短信发送分钟间隔
+    #interval-min: 1
+    # 短信有效分钟
+    #valid-min: 5
+
+    # 榛子云短信验证码配置
+    sms:
+      apiUrl: https://sms_developer.zhenzikj.com
+      appId: 110250
+      appSecret: dc594fea-b736-4568-8885-591cc678396a
+      template-id: 7129
+      # 短信发送分钟间隔
+      interval-min: 1
+      # 短信有效分钟
+      timeOut: 1
+      # 短信有效长度
+      codeLength: 6
+
+    # 百度人脸识别
+    baidu:
+      aip:
+        app-id: 25046617
+        app-key: MchWl2cAmiIk6O1042sY0mqz
+        secret-key: 9aH6U2Cq1GIlqzK2WRp6INwjhr4hpjOf
+        conn-timeout: 2000 # 连接超时ms，默认 2000
+        socket-timeout: 60000 # socket超时ms，默认60000
+        accept-score: 90 # 最低被接受的人脸置信分数[1,100]，分数越高，要求越严格，也越准确。
+  mail:
+    host: smtp.qq.com
+    username: 2372047566@qq.com
+    password: luhdthfxcuehebhi
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enble: true
+            required: true
+
 # 服务启动
 server:
   port: 8080
