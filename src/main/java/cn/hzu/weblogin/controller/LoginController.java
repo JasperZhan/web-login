@@ -2,6 +2,8 @@ package cn.hzu.weblogin.controller;
 
 import cn.hzu.weblogin.model.Result;
 import cn.hzu.weblogin.model.User;
+import cn.hzu.weblogin.model.vo.UserInfo;
+import cn.hzu.weblogin.service.UserInfoService;
 import cn.hzu.weblogin.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +45,8 @@ public class LoginController {
         String retStr = "";
         User user = new User();
         Result<User> result = null;
+
+        UserInfo userInfo = new UserInfo();
 
         int i = Integer.valueOf(loginWay).intValue();
 

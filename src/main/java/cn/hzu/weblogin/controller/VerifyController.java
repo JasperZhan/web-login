@@ -7,6 +7,7 @@ import cn.hzu.weblogin.service.UserInfoService;
 import cn.hzu.weblogin.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -28,6 +29,7 @@ public class VerifyController {
         }
     }
 
+    @ResponseBody
     @RequestMapping("/verify/check")
     public String check(String id_card, String real_name, HttpSession session) {
 
@@ -38,12 +40,12 @@ public class VerifyController {
         UserInfo userInfo = new UserInfo();
         userInfo.setId_Card(id_card);
         userInfo.setReal_name(real_name);
-        userInfo.setId((Integer) session.getAttribute("id"));
+        userInfo.setId((Integer) session.getAttribute("user_id"));
 
         Result<UserInfo> result = userInfoService.verify(userInfo);
 
         if (result.isSuccess()) {
-            return "verifySuccess";
+            return "location.href='/main'";
         } else {
             return "verifyError";
         }

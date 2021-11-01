@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * @className: Result<T>
+ * @className: Result
  * @description: 请求结果类
  * @author: Hzu_rang
  * @createDate: 2021/10/23
@@ -26,6 +26,7 @@ public class Result<T> implements Serializable {
      * 返回的数据主体（返回的内容）
      */
     private T data;
+
     /**
      * 设定结果为成功
      *
