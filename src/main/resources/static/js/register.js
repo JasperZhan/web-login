@@ -1,4 +1,4 @@
-$("button").click(function () {
+$("#register").click(function () {
     var para = getUserRegisterInfo()
 
     $.ajax({
@@ -52,4 +52,27 @@ function getUserRegisterInfo() {
         userPw: password,
     };
     return para;
+}
+
+var InterValObj; //timer变量，控制时间
+var count = 60; //间隔函数，1秒执行
+var curCount;//当前剩余秒数
+$('#getVc').on('click', function () {
+    curCount = count;
+    //设置button效果，开始计时
+    $("#getVc").attr("disabled", "disabled");
+    $("#getVc").addClass('disable');
+    InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+});
+
+function SetRemainTime() {
+    if (curCount == 0) {
+        window.clearInterval(InterValObj);//停止计时器
+        $("#getVc").removeAttr("disabled");//启用按钮
+        $("#getVc").removeClass('disable');
+        $("#getVc").text("重新获取");
+    } else {
+        curCount--;
+        $("#getVc").text("" + curCount + "s后获取");
+    }
 }
