@@ -123,6 +123,10 @@ public class SmsServiceImpl implements SmsService {
     public Result<Code> sendByEmail(String email) {
         Result<Code> result = new Result<>();
         Code code = new Code();
+        if (!StringUtils.isEmail(email)) {
+            result.setResultFailed("邮箱号码不合法");
+            return result;
+        }
         try {
             SimpleMailMessage mailMessage = new SimpleMailMessage();
 
