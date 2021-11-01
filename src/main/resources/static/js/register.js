@@ -32,6 +32,7 @@ function getUserRegisterInfo() {
     var way = getCurrentTabIndex()
     var accounting
     var password
+    var code = $("#vc").val()
     switch (way) {
         case 0:
             accounting = $("#user_tel").val()
@@ -50,6 +51,7 @@ function getUserRegisterInfo() {
         //用户登录账号
         userNum: accounting,
         userPw: password,
+        code: code
     };
     return para;
 }
@@ -58,6 +60,21 @@ var InterValObj; //timer变量，控制时间
 var count = 60; //间隔函数，1秒执行
 var curCount;//当前剩余秒数
 $('#getVc').on('click', function () {
+    var para = getUserRegisterInfo();
+    var data = {
+        registerWay: para.registerWay,
+        userNum: para.userNum,
+    }
+    $.ajax({
+        //跳转 url
+        url: "/register/code",
+        type: "Post",
+        data: data,
+        datatype: "HTML",
+        success: function (data) {
+            eval(data);
+        }
+    })
     curCount = count;
     //设置button效果，开始计时
     $("#getVc").attr("disabled", "disabled");
