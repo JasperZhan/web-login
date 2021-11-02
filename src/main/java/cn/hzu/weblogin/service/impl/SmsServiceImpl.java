@@ -2,10 +2,11 @@ package cn.hzu.weblogin.service.impl;
 
 import cn.hzu.weblogin.model.Code;
 import cn.hzu.weblogin.model.Result;
+import cn.hzu.weblogin.service.SmsService;
 import cn.hzu.weblogin.utils.RandomUtils;
 import cn.hzu.weblogin.utils.StringUtils;
 import com.alibaba.fastjson.JSONObject;
-import cn.hzu.weblogin.service.SmsService;
+import com.zhenzi.sms.ZhenziSmsClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,11 +14,10 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import com.zhenzi.sms.ZhenziSmsClient;
-
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @className: SmsServiceImpl
@@ -77,18 +77,21 @@ public class SmsServiceImpl implements SmsService {
         String num = RandomUtils.number(6);
 
         ZhenziSmsClient client = new ZhenziSmsClient(apiUrl, APP_ID, APP_KEY);
-        HashMap<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<String, Object>();
 
         JSONObject json = null;
-
+        map.put("number", tel);
         map.put("templateId", TEMPLATE_ID);
 
         // 添加模板参数
-        map.put("message", "亲爱的用户，您的短信验证码为" + num + "，1分钟内有效，若非本人操作请忽略。");
-        map.put("phone", tel);
+        String[] templateParams = new String[2];
+        templateParams[0] = num;
+        templateParams[1] = "1分钟";
+        map.put("templateParams", templateParams);
         try {
             String result_sms = client.send(map);
             json = JSONObject.parseObject(result_sms);
+            System.out.println(json);
             if (json.getIntValue("code") != 0) {
                 // TODO 处理服务端错误码
                 log.error("验证码发送失败，手机号：{}，错误信息：{}", tel, "发送短信失败");
@@ -96,7 +99,7 @@ public class SmsServiceImpl implements SmsService {
                 return result;
             } else {
                 code.setCode(num);
-                code.setCurrentTime(System.currentTimeMillis());
+                code.setCurrentTime(System.currentTimeMillis() / 1000);
                 result.setResultSuccess("发送短信成功", code);
                 return result;
             }
@@ -140,7 +143,7 @@ public class SmsServiceImpl implements SmsService {
             mailMessage.setSubject("党建服务系统");
             mailSender.send(mailMessage);//发送
             code.setCode(num);
-            code.setCurrentTime(System.currentTimeMillis());
+            code.setCurrentTime(System.currentTimeMillis() / 1000);
             log.info("文本邮件发送成功！");
             result.setResultSuccess("邮件发送成功", code);
             return result;
