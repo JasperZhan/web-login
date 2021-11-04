@@ -106,7 +106,9 @@ public class AddInfoController {
 
         // 修改信息完成
         // 清楚session
-        session.invalidate();
+        session.removeAttribute("tel");
+        session.removeAttribute("code");
+        session.removeAttribute("sendTime");
         return "location.href='/main'";
     }
 
@@ -141,7 +143,9 @@ public class AddInfoController {
 
         // 修改信息完成
         // 清楚session
-        session.invalidate();
+        session.removeAttribute("mail");
+        session.removeAttribute("code");
+        session.removeAttribute("sendTime");
         return "location.href='/main'";
     }
 }
