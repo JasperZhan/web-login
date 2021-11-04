@@ -1,4 +1,4 @@
-$("button").click(function () {
+$("#changeInfo").click(function () {
     var para = {
         tel: $("#user_tel").val(),
         code: $("#vc").val()
@@ -24,10 +24,8 @@ var InterValObj; //timer变量，控制时间
 var count = 60; //间隔函数，1秒执行
 var curCount;//当前剩余秒数
 $('#getVc').on('click', function () {
-    var para = getUserRegisterInfo();
     var data = {
-        registerWay: para.registerWay,
-        userNum: para.userNum,
+        tel: $("#user_tel").val()
     }
     $.ajax({
         //跳转 url

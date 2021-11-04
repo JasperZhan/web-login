@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="../static/js/L2Dwidget.min.js" th:src="@{/js/L2Dwidget.min.js}"></script>
+    <script src="../static/js/L2Dwidget.0.min.js" th:src="@{/js/L2Dwidget.0.min.js}"></script>
+    <style>
+        .live2d-widget-dialog-container {
+            width: 300px;
+            height: 120px;
+            position: absolute;
+            bottom: 65%;
+            right: 0px;
+            transform-origin: right;
+            padding: 12px;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .live2d-widget-dialog {
+            width: 100%;
+            height: 100%;
+            color: #917159;
+            font-size: 16px;
+            padding: 12px;
+            border: 2px solid rgb(236, 203, 180);
+            background: rgb(252, 248, 244);
+            box-sizing: border-box;
+            border-radius: 10px;
+            transform: rotate(-2deg);
+            opacity: 0;
+            transition: 200ms opacity;
+            box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+            animation: live2d-widget-dialog-tingle 4s ease-in-out 0s infinite alternate;
+        }
+
+        @keyframes live2d-widget-dialog-tingle {
+            0% {
+                transform: translate(-1px, 1.5px) rotate(-2deg);
+            }
+            100% {
+                transform: translate(1px, -1.5px) rotate(2deg);
+            }
+        }
+    </style>
+    <title>找回密码</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-sm-8 col-md-8 col-lg-5">
+
+            <div class="m-4 p-1">
+                <h2 class="text-center">找回密码</h2>
+            </div>
+
+            <div>
+                <!-- 注册 选项 -->
+                <ul class="nav nav-tabs justify-content-center" id="findBack_tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#tel_register">手机找回</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#mail_register">邮箱找回</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" style="height: 290px;">
+                    <div class="container tab-pane active" id="tel_register"><br>
+                        <form role="form" id="findBackPhoneForm">
+                            <div class="form-group ">
+                                <label class="p-2 fw-light" for="user_tel">手机</label>
+                                <input class="form-control form-control-lg" id="user_tel" placeholder="请输入手机号码"
+                                       autocomplete="new-password" type="tel"/>
+                                <span class="fw-light" id="tel_tips"></span>
+                            </div>
+                            <div class="form-group ">
+                                <label class="p-2 fw-light" for="tel_pw">密码</label>
+                                <input class="form-control form-control-lg" id="tel_pw" placeholder="请输入密码"
+                                       autocomplete="new-password" type="password"/>
+                            </div>
+                            <div class="form-group ">
+                                <label class="p-2 fw-light" for="tel_pw">确认密码</label>
+                                <input class="form-control form-control-lg" id="tel_pw1" placeholder="请再次输入密码"
+                                       autocomplete="new-password" type="password"/>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="container tab-pane fade" id="mail_register"><br>
+                        <form role="form" id="findBackEmailForm" action="">
+                            <div class="form-group ">
+                                <label class="p-2 fw-light" for="user_mail">邮箱</label>
+                                <input class="form-control form-control-lg" id="user_mail" placeholder="请输入邮箱账号"
+                                       autocomplete="new-password" type="email"/>
+                            </div>
+                            <div class="form-group ">
+                                <label class="p-2 fw-light" for="mail_pw">密码</label>
+                                <input class="form-control form-control-lg" id="mail_pw" placeholder="请输入密码"
+                                       autocomplete="new-password" type="password"/>
+                            </div>
+                            <div class="form-group ">
+                                <label class="p-2 fw-light" for="tel_pw">确认密码</label>
+                                <input class="form-control form-control-lg" id="mail_pw1" placeholder="请再次输入密码"
+                                       autocomplete="new-password" type="password"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex mx-4">
+                <div class="form">
+                    <label class="p-2 fw-light" for="vc">验证码</label>
+                    <input class="form-control form-control-lg" id="vc" placeholder="请输入验证码" type="email"/>
+                </div>
+                <div style="margin-left: auto;">
+                    <button class="btn btn-primary mt-5 " id="getVc">获取验证码</button>
+                </div>
+            </div>
+
+            <div class="m-4">
+                <button class="btn btn-primary btn-lg w-100" id="findBack" type="button">找回密码</button>
+            </div>
+
+            <div class="text-center">
+                <a href="/login">突然想起密码？返回登录</a>
+            </div>
+
+        </div>
+        <div class="col"></div>
+
+    </div>
+</div>
+<script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../static/js/register.js" th:src="@{/js/findbackpd.js}"></script>
+<script>
+    L2Dwidget.init({
+        model: {
+            jsonPath: "https://unpkg.com/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json",
+            scale: 1
+        },
+        display: {
+            position: "right",
+            width: 200,
+            height: 400,
+            hOffset: 0,
+            vOffset: -20
+        },
+        react: {
+            opacity: 0.8
+        },
+        dialog: {
+            // 开启对话框
+            enable: true
+        }
+    });
+    //
+    // $(function () {
+    //     $("#user_tel").keyup(function () {
+    //         $("#tel_tips").html("输入")
+    //     })
+    // })
+    //
+    // /*
+    //  * 验证手机号码
+    //  */
+    // function validatorTel(content) {
+    //     // 正则验证格式
+    //     eval("var reg = /^1[34578]\\d{9}$/;");
+    //     return RegExp(reg).test(content);
+    // }
+</script>
+<div id="live2d-widget" class="live2d-widget-container"
+     style="position: fixed; right: 0px; bottom: -20px; width: 200px; height: 400px; z-index: 99999; opacity: 1; pointer-events: none;">
+    <div class="live2d-widget-dialog-container" style="transform: scale(0.8);">
+        <div class="live2d-widget-dialog" style="opacity: 1;">
+            <p align="center">“科学表明，复杂的密码更安全噢”</p>
+        </div>
+    </div>
+    <canvas id="live2dcanvas" width="400" height="800"
+            style="position: absolute; left: 0px; top: 0px; width: 200px; height: 400px;"></canvas>
+</div>
+</body>
+</html>

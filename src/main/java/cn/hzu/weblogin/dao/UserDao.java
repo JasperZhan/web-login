@@ -64,7 +64,56 @@ public interface UserDao {
     /**
      * 改变实名认证状态
      * @param id 对应的字段名
-     * @return
+     * @param check_status 认证状态
+     * @return 改变成功记录条数
      */
     int changeId_check(Integer id, Integer check_status);
+
+    /**
+     * 根据手机号更新密码
+     * @param user_phone 手机号
+     * @param user_pwd 密码
+     * @return 更新成功记录条数
+     */
+    int updateByPhone(@Param("user_phone") String user_phone, @Param("user_pwd") String user_pwd);
+
+    /**
+     * 根据邮箱更新密码
+     * @param user_email 邮箱
+     * @param user_pwd 密码
+     * @return 更新成功记录条数
+     */
+    int updateByEmail(@Param("user_email") String user_email, @Param("user_pwd") String user_pwd);
+
+    /**
+     * 根据手机号更新信息
+     * @param id 用户id
+     * @param user_email 邮箱号码
+     * @return 更新成功记录条数
+     */
+    int updatePhone(Integer id, @Param("user_email") String user_email);
+
+    /**
+     * 根据邮箱更新信息
+     * @param id 用户id
+     * @param user_phone
+     * @return 更新成功记录条数
+     */
+    int updateEmail(Integer id, @Param("user_phone") String user_phone);
+
+    /**
+     * 根据手机号码删除信息
+     * @param id 用户id
+     * @param user_phone 手机号码
+     * @return 删除成功记录条数
+     */
+    int deleteByPhone(Integer id, @Param("user_phone") String user_phone);
+
+    /**
+     * 根据邮箱号码删除信息
+     * @param id 用户id
+     * @param user_email 邮箱号码
+     * @return 删除成功记录条数
+     */
+    int deleteByEmail(Integer id, @Param("user_email") String user_email);
 }

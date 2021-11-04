@@ -52,4 +52,27 @@
         where email = #{user_email} limit 1;
     </select>
 
+    <update id="updateByPhone" parameterType="cn.hzu.weblogin.model.User">
+            update user set password = #{user_pwd} where tel = #{user_phone}
+    </update>
+
+    <update id="updateByEmail" parameterType="cn.hzu.weblogin.model.User">
+            update user set password = #{user_pwd} where email = #{user_email}
+    </update>
+
+    <update id="updatePhone" parameterType="cn.hzu.weblogin.model.User">
+            update user set email = #{user_email} where id = #{id}
+    </update>
+
+    <update id="updateEmail" parameterType="cn.hzu.weblogin.model.User">
+            update user set tel = #{user_phone} where id = #{id}
+    </update>
+
+    <delete id="deleteByPhone" parameterType="cn.hzu.weblogin.model.User">
+            delete from user where id = #{id} and tel = #{user_phone}
+    </delete>
+
+    <delete id="deleteByEmail" parameterType="cn.hzu.weblogin.model.User">
+            delete from user where id = #{id} and email = #{user_email}
+    </delete>
 </mapper>

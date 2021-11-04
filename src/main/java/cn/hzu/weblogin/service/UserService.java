@@ -49,4 +49,31 @@ public interface UserService {
      * @return 查找结果
      */
     Result<User> getUser(User user);
+
+    /**
+     * 根据手机号码找回密码
+     * @param user 用户对象
+     * @return 重置密码结果
+     */
+    Result<User> findBackByTel(User user);
+
+    /**
+     * 根据邮箱号找回密码
+     * @param user 用户对象
+     * @return 重置密码结果
+     */
+    Result<User> findBackByMail(User user);
+
+    /**
+     * 根据手机号码完善信息
+     * @param user 用户对象
+     * @return 修改信息结果
+     */
+    Result<User> addInfoByTel(User user);
+    /**
+     * 根据邮箱号完善信息
+     * @param user 用户对象
+     * @return 修改信息结果
+     */
+    Result<User> addInfoByMail(User user);
 }
