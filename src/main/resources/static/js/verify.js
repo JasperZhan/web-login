@@ -1,4 +1,4 @@
-$("button").click(function () {
+$("#verify").click(function () {
 
     var para = {
         id_card: $("#id_card").val(),
