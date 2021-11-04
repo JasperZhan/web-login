@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}">
+    <title>登录</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-sm-8 col-md-8 col-lg-5">
+
+            <div class="m-5 p-4">
+                <h2 class="text-center">添加邮箱号码</h2>
+            </div>
+
+            <div>
+
+                <!-- 登录 输入框 -->
+                <div style="height: 200px;">
+                    <div class="container" id="tel_login"><br>
+                        <form>
+                            <div class="form-group ">
+                                <label class="p-2 fw-light" for="user_tel">邮箱号码</label>
+                                <input class="form-control form-control-lg" id="user_tel" placeholder="请输入邮箱号码"
+                                       type="tel"/>
+                            </div>
+                            <div class="d-flex">
+                                <div class="form-group">
+                                    <label class="p-2 fw-light" for="vc">验证码</label>
+                                    <input class="form-control form-control-lg" id="vc" placeholder="请输入验证码"
+                                           type="email"/>
+                                </div>
+                                <div style="margin-left: auto;">
+                                    <button class="btn btn-primary mt-5 " id="getVc">获取验证码</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <br>
+                <hr>
+            </div>
+
+            <div class="m-4">
+                <button class="btn btn-primary btn-lg w-100" type="submit">确认修改</button>
+            </div>
+
+            <div class="text-center">
+                <a href="/main">返回主页</a>
+            </div>
+        </div>
+        <div class="col"></div>
+
+    </div>
+</div>
+<script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script src="../static/js/jquery.cookie.js" th:src="@{/js/jquery.cookie.js}"></script>
+<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../static/js/login.js" th:src="@{/js/login.js}"></script>
+
+</body>
+</html>
