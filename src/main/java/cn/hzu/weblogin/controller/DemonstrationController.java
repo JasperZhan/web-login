@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class DemonstrationController {
-    @RequestMapping("/dsc")
-    public String dsc() {
+    @RequestMapping("/demo")
+    public String demo() {
         return "dsc";
     }
 }
