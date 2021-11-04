@@ -27,6 +27,10 @@ $('#getVc').on('click', function () {
     var data = {
         mail: $("#user_mail").val(),
     }
+    if (data.mail == null || data.mail === "") {
+        alert("请先输入邮箱号噢");
+        return;
+    }
     $.ajax({
         //跳转 url
         url: "/addMail/code",

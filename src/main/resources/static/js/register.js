@@ -65,6 +65,10 @@ $('#getVc').on('click', function () {
         registerWay: para.registerWay,
         userNum: para.userNum,
     }
+    if (data.userNum == null || data.userNum === "") {
+        alert("请先输入手机号或邮箱号噢");
+        return;
+    }
     $.ajax({
         //跳转 url
         url: "/register/code",

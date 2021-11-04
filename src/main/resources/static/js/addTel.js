@@ -27,6 +27,10 @@ $('#getVc').on('click', function () {
     var data = {
         tel: $("#user_tel").val()
     }
+    if (data.tel == null || data.tel === "") {
+        alert("请先输入手机号噢");
+        return;
+    }
     $.ajax({
         //跳转 url
         url: "/addTel/code",
