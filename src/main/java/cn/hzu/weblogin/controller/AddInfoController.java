@@ -133,6 +133,7 @@ public class AddInfoController {
         Result<User> result = new Result<>();
 
         user.setEmail(mail);
+        user.setUserId((Integer) session.getAttribute("user_id"));
         result = userService.addInfoByMail(user);
 
         if (!result.isSuccess())
