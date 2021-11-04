@@ -34,11 +34,28 @@
             </div>
 
             <div class="m-4">
-                <button class="btn btn-outline-danger btn-lg w-100" type="button">验证</button>
+                <button class="btn btn-outline-danger btn-lg w-100" type="button" id="verify">验证</button>
             </div>
 
             <div class="text-center">
-                <a href="#">认证失败？反馈一下</a>
+                <a data-bs-toggle="modal" data-bs-target="#staticBackdrop">认证失败？反馈一下</a>
+            </div>
+
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">联系党政服务中心助理</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="../static/img/wechat.jpg">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
