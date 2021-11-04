@@ -7,45 +7,6 @@
     <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}">
     <script src="../static/js/L2Dwidget.min.js" th:src="@{/js/L2Dwidget.min.js}"></script>
     <script src="../static/js/L2Dwidget.0.min.js" th:src="@{/js/L2Dwidget.0.min.js}"></script>
-    <style>
-        .live2d-widget-dialog-container {
-            width: 300px;
-            height: 120px;
-            position: absolute;
-            bottom: 65%;
-            right: 0px;
-            transform-origin: right;
-            padding: 12px;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .live2d-widget-dialog {
-            width: 100%;
-            height: 100%;
-            color: #917159;
-            font-size: 16px;
-            padding: 12px;
-            border: 2px solid rgb(236, 203, 180);
-            background: rgb(252, 248, 244);
-            box-sizing: border-box;
-            border-radius: 10px;
-            transform: rotate(-2deg);
-            opacity: 0;
-            transition: 200ms opacity;
-            box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
-            animation: live2d-widget-dialog-tingle 4s ease-in-out 0s infinite alternate;
-        }
-
-        @keyframes live2d-widget-dialog-tingle {
-            0% {
-                transform: translate(-1px, 1.5px) rotate(-2deg);
-            }
-            100% {
-                transform: translate(1px, -1.5px) rotate(2deg);
-            }
-        }
-    </style>
     <title>找回密码</title>
 </head>
 <body>
@@ -54,8 +15,8 @@
         <div class="col"></div>
         <div class="col-sm-8 col-md-8 col-lg-5">
 
-            <div class="m-4 p-1">
-                <h2 class="text-center">找回密码</h2>
+            <div class="m-1 p-4">
+                <h2 class="text-center text-danger">党政服务中心 • 找回密码</h2>
             </div>
 
             <div>
@@ -119,12 +80,12 @@
                     <input class="form-control form-control-lg" id="vc" placeholder="请输入验证码" type="email"/>
                 </div>
                 <div style="margin-left: auto;">
-                    <button class="btn btn-primary mt-5 " id="getVc">获取验证码</button>
+                    <button class="btn btn-danger mt-5 " id="getVc">获取验证码</button>
                 </div>
             </div>
 
             <div class="m-4">
-                <button class="btn btn-primary btn-lg w-100" id="findBack" type="button">找回密码</button>
+                <button class="btn btn-outline-danger btn-lg w-100" id="findBack" type="button">找回密码</button>
             </div>
 
             <div class="text-center">

@@ -7,7 +7,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver # MySQL驱动，无需修改
     url: jdbc:mysql://localhost:3306/login?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2B8
     username: root # 数据库连接名
-    password: root # 数据库连接密码
+    password: 123456 # 数据库连接密码
 
   # Redis 配置
   redis:
@@ -45,9 +45,9 @@ spring:
     # 榛子云短信验证码配置
     sms:
       apiUrl: https://sms_developer.zhenzikj.com
-      appId: 110250
-      appSecret: dc594fea-b736-4568-8885-591cc678396a
-      template-id: 7129
+      appId: 110278
+      appSecret: fcb88026-d755-4cf6-8f5e-419048c5b628
+      template-id: 7164
       # 短信发送分钟间隔
       interval-min: 1
       # 短信有效分钟
