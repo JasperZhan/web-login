@@ -33,6 +33,7 @@ public class VerifyController {
     @RequestMapping("/verify/check")
     public String check(String id_card, String real_name, HttpSession session) {
 
+//        if (userInfoService.checkId_exist)
         if (!verifyStatus(session)) {
             return "verifyError";
         }
