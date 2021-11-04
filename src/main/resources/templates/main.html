@@ -8,66 +8,105 @@
     <title>用户信息</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light" style="color: #FFF2EA">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">党政服务中心</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">学习</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">活动</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        我的
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">学习情况</a></li>
+                        <li><a class="dropdown-item" href="#">活动经历</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">个人信息</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">党支部</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="党政资讯" aria-label="Search">
+                <button class="btn btn-outline-danger" type="submit" style="width: 100px">搜索</button>
+            </form>
+        </div>
+    </div>
+</nav>
 <div class="container">
     <div class="row">
         <div class="col"></div>
         <div class="col-sm-12 col-md-8 col-lg-4">
-            <div class="m-5 p-4">
-                <h2 class="text-center">用户信息</h2>
+            <div class="p-4">
+                <h4 class="text-center">个人信息</h4>
             </div>
             <form>
                 <div class="row mb-3">
                     <div class="form-group col-6">
-                        <label for="name">姓名</label>
+                        <label for="name" class="px-2 fw-light">姓名</label>
                         <input class="form-control" disabled id="name" readonly th:value="${userInfo.real_name}"
-                               type="text">
+                               type="text" style="background-color: white">
                     </div>
                     <div class="form-group col-6">
-                        <label for="birthday">出身日期</label>
+                        <label for="birthday" class="px-2 fw-light">出身日期</label>
                         <input class="form-control" disabled id="birthday" readonly
                                th:value="${#dates.format(userInfo.birthday, 'yyyy-MM-dd')}"
-                               type="text">
+                               type="text" style="background-color: white">
                     </div>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="tel">手机号</label>
-                    <input class="form-control" disabled id="tel" readonly th:value="${user.tel}" type="text">
+                    <label for="tel" class="px-2 fw-light">手机号</label>
+                    <input class="form-control" disabled id="tel" readonly th:value="${user.tel}" type="text" style="background-color: white">
                 </div>
                 <div class="form-group mb-3">
-                    <label for="email">邮箱号</label>
-                    <input class="form-control" disabled id="email" readonly th:value="${user.email}" type="text">
+                    <label for="email" class="px-2 fw-light">邮箱号</label>
+                    <input class="form-control" disabled id="email" readonly th:value="${user.email}" type="text" style="background-color: white">
                 </div>
                 <div class="form-group mb-3">
-                    <label for="idCard">身份证号</label>
+                    <label for="idCard" class="px-2 fw-light">身份证号</label>
                     <input class="form-control" disabled id="idCard" readonly th:value="${userInfo.id_Card}"
-                           type="text">
+                           type="text" style="background-color: white">
                 </div>
                 <div class="row mb-5">
                     <div class="form-group col-4">
-                        <label for="province">省</label>
+                        <label for="province" class="px-2 fw-light">省</label>
                         <input class="form-control" disabled id="province" readonly th:value="${userInfo.addProvince}"
-                               type="text">
+                               type="text" style="background-color: white">
                     </div>
                     <div class="form-group col-4">
-                        <label for="city">市</label>
+                        <label for="city" class="px-2 fw-light">市</label>
                         <input class="form-control" disabled id="city" readonly th:value="${userInfo.addCity}"
-                               type="text">
+                               type="text" style="background-color: white">
                     </div>
                     <div class="form-group col-4">
-                        <label for="district">区/县</label>
+                        <label for="district" class="px-2 fw-light">区/县</label>
                         <input class="form-control" disabled id="district" readonly th:value="${userInfo.addDistrict}"
-                               type="text">
+                               type="text" style="background-color: white">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col">
-                        <button class="btn btn-primary w-100" id="confirm" type="button">确认无误</button>
+                        <button class="btn btn-outline-danger w-100" id="confirm" type="button">确认无误</button>
                     </div>
                     <div class="col-1"></div>
                     <div class="col">
-                        <button class="btn btn-primary w-100" id="logout" type="submit">退出登录</button>
+                        <button class="btn btn-outline-danger w-100" id="logout" type="submit">退出登录</button>
                     </div>
                     <div class="col-1"></div>
                 </div>
