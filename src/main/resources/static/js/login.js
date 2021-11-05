@@ -41,6 +41,13 @@ function getUserLoginInfo() {
             password = $('#mail_pw').val()
             break;
         case 2:
+            let canvas = document.getElementById("canvas");
+            let ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, 360, 360);
+            var base64File = canvas.toDataURL();
+            //将数据装入FormDate
+            var formData = new FormData();
+            formData.append("file", base64File.substr(22));
             break;
     }
     var para = {
@@ -49,7 +56,8 @@ function getUserLoginInfo() {
         //用户登录账号
         userNum: accounting,
         userPw: password,
-        isSavePw: $("input[type='checkbox']").is(':checked')
+        isSavePw: $("input[type='checkbox']").is(':checked'),
+        formData: formData
     };
     return para;
 }
@@ -116,7 +124,6 @@ window.onload = function getCookie() {
 
 function login() {
     var para = getUserLoginInfo()
-
     //判断是否选中复选框，如果选中，添加cookie
     console.log("是否记住密码：" + para.isSavePw);
     if (para.isSavePw) {
