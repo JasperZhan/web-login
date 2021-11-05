@@ -8,6 +8,8 @@ import cn.hzu.weblogin.model.User;
 import cn.hzu.weblogin.model.vo.UserInfo;
 import cn.hzu.weblogin.service.UserInfoService;
 import cn.hzu.weblogin.utils.HttpUtils;
+import cn.hzu.weblogin.utils.IDValidateUtils;
+import cn.hzu.weblogin.utils.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +43,11 @@ public class UserInfoServiceImpl implements UserInfoService {
         user.setUserId(userInfo.getId());
 
         Result<UserInfo> resultUserInfo = new Result<>();
+
+        if (!IDValidateUtils.check(userInfo.getId_Card())) {
+            resultUserInfo.setResultFailed("身份证号码不合法");
+            return resultUserInfo;
+        }
 
         Map<String, String> headers = new HashMap<String, String>();
 
