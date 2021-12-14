@@ -58,7 +58,7 @@ function getInfo() {
     var para = {
         name: name,
         sex: sex,
-        inputDate: inputDate,
+        birthday: inputDate+"-01",
         nativePlace: nativePlace,
         workUnitAndPosition: workUnitAndPosition,
         education: education,
@@ -70,8 +70,8 @@ function getInfo() {
         applicationCategory: applicationCategory,
         phone: phone,
         signingOfWorkContract: signingOfWorkContract,
-        yearsOfContractSigningInHuizhou: yearsOfContractSigningInHuizhou,
-        settlementProceduresDate: settlementProceduresDate,
+        yearsOfContractSigningInHuizhou: yearsOfContractSigningInHuizhou+"-01",
+        settlementProceduresDate: settlementProceduresDate+"-01",
         settlementProceduresLocal: settlementProceduresLocal,
         amountOfHousingApplication: amountOfHousingApplication,
         amountOfHousingApplicationB: amountOfHousingApplicationB,
@@ -84,7 +84,7 @@ $('#save_info').click(function () {
     var para = getInfo();
     $.ajax({
         //跳转 url
-        url: "",
+        url: "/form/save",
         type: "Post",
         data: para,
         datatype: "HTML",
