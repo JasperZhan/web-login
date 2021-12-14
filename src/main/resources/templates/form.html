@@ -22,7 +22,7 @@
                 <div class="row mb-4">
                     <div class="col-2 form-group">
                         <label for="name" class="px-2 fw-light">姓名</label>
-                        <input type="text" class="form-control" id="name" placeholder="请输入姓名">
+                        <input type="text" class="form-control" autocomplete="off" id="name" placeholder="请输入姓名">
                     </div>
                     <div class="col-2 form-group">
                         <label for="sex" class="px-2 fw-light">性别</label>
@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-4 form-group">
                         <label for="inputDate" class="px-2 fw-light">出生年月</label>
-                        <input type="text" class="form-control" id="inputDate" placeholder="请选择出生年月">
+                        <input type="text" class="form-control" autocomplete="off" id="inputDate" placeholder="请选择出生年月">
                     </div>
                     <div class="col-4 form-group">
                         <label class="px-2 fw-light">籍贯</label>
@@ -55,12 +55,12 @@
                 <div class="row mb-4">
                     <div class="col-4 form-group">
                         <label for="work" class="px-2 fw-light">工作单位及职务</label>
-                        <input type="text" class="form-control" id="work" placeholder="请输入工作单位及职务">
+                        <input type="text" class="form-control" autocomplete="off" id="work" placeholder="请输入工作单位及职务">
                     </div>
                     <div class="col-8 form-group">
                         <label class="px-2 fw-light">家庭住址（惠州）</label>
                         <br>
-                        <input class="form-control-color" disabled readonly value="惠州市" type="text"
+                        <input id="shi" class="form-control-color" disabled readonly value="惠州市" type="text"
                                style="width: 70px; color: #212529; border: 1px solid #ced4da; border-radius: .25rem;">
                         <select id="qu" class="form-control-color"
                                 style="width: 85px; color: #212529; border: 1px solid #ced4da; border-radius: .25rem;">
@@ -70,7 +70,7 @@
                             <option>惠阳区</option>
                             <option>龙门县</option>
                         </select>
-                        <input class="form-control-color" placeholder="请输入详细地址（街道小区）" type="text"
+                        <input id="address" autocomplete="off" class="form-control-color" placeholder="请输入详细地址（街道小区）" type="text"
                                style="width: 380px; color: #212529; border: 1px solid #ced4da; border-radius: .25rem;">
                     </div>
                 </div>
@@ -95,11 +95,11 @@
                     </div>
                     <div class="col-4 form-group">
                         <label for="major" class="px-2 fw-light">专业</label>
-                        <input type="text" class="form-control" id="major" placeholder="请输入专业信息">
+                        <input type="text" class="form-control" id="major" autocomplete="off" placeholder="请输入专业信息">
                     </div>
                     <div class="col-4 form-group">
                         <label for="technical_title" class="px-2 fw-light">技术职称</label>
-                        <input type="text" class="form-control" id="technical_title" placeholder="请输入技术职称">
+                        <input type="text" class="form-control" id="technical_title" autocomplete="off" placeholder="请输入技术职称">
                     </div>
                 </div>
 
@@ -108,25 +108,22 @@
                         <label class="px-2 fw-light">申请类别</label>
                         <br>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="category" id="doctor">
-                            <label class="form-check-label" for="doctor">博士</label>
+                            <input class="form-check-input" type="radio" name="category" value="博士" id="doctor">博士
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="category" id="senior">
-                            <label class="form-check-label" for="senior">正高职称</label>
+                            <input class="form-check-input" type="radio" name="category" value="正高职称" id="senior">正高职称
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="category" id="post-doctoral">
-                            <label class="form-check-label" for="post-doctoral">博士后</label>
+                            <input class="form-check-input" type="radio" name="category" value="博士后" id="post-doctoral">博士后
                         </div>
                     </div>
                     <div class="col-4 form-group">
                         <label for="phone" class="px-2 fw-light">办公电话</label>
-                        <input type="text" class="form-control" id="phone" placeholder="请输入电话">
+                        <input type="number" class="form-control" autocomplete="off" id="phone" placeholder="请输入电话">
                     </div>
                     <div class="col-4 form-group">
                         <label for="tel" class="px-2 fw-light">手机</label>
-                        <input type="text" class="form-control" id="tel" placeholder="请输入手机号码">
+                        <input type="number" class="form-control" autocomplete="off" id="tel" placeholder="请输入手机号码">
                     </div>
                 </div>
 
@@ -134,12 +131,10 @@
                     <div class="col-12 form-group">
                         <label class="px-2 fw-bold">工作合同签订情况</label>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="work_status" id="one">
-                            <label class="form-check-label" for="one">已和企事业单位签订 3 年以上工作合同</label>
+                            <input class="form-check-input" type="radio" value="已和企事业单位签订 3 年以上工作合同" name="work_status" id="one">已和企事业单位签订 3 年以上工作合同
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="work_status" id="two">
-                            <label class="form-check-label" for="two">被机关事业单位接收录用</label>
+                            <input class="form-check-input" type="radio" value="被机关事业单位接收录用" name="work_status" id="two">被机关事业单位接收录用
                         </div>
                     </div>
                 </div>
@@ -149,9 +144,9 @@
                         <label class="px-2 fw-bold">在惠签约工作年限</label>
                         <input type="text" class="form-control-color"
                                style="width: 110px; color: #212529; border: 1px solid #ced4da; border-radius: .25rem;"
-                               id="work_date">
+                               autocomplete="off" id="work_date">
                         <label class="px-2">开始（签约）在惠工作，至今累计在惠工作</label>
-                        <input id="year" class="form-control-color" readonly value="" type="text"
+                        <input id="year" class="form-control-color" disabled value="" type="text"
                                style="width: 110px; color: #212529; border: 1px solid #ced4da; border-radius: .25rem;">
                         <label class="px-2">年。</label>
                     </div>
@@ -162,10 +157,10 @@
                         <label class="px-2 fw-bold">落户手续办理情况</label>
                         <input type="text" class="form-control-color"
                                style="width: 110px; color: #212529; border: 1px solid #ced4da; border-radius: .25rem;"
-                               id="home_date">
+                               autocomplete="off" id="home_date">
                         <label class="px-2">已在惠州市</label>
                         <input id="location" class="form-control-color" type="text"
-                               style="width: 230px; color: #212529; border: 1px solid #ced4da; border-radius: .25rem;">
+                               autocomplete="off" style="width: 230px; color: #212529; border: 1px solid #ced4da; border-radius: .25rem;">
                         <label class="px-2">派出所办理户籍迁移手续。</label>
                     </div>
                 </div>
@@ -173,10 +168,10 @@
                 <div class="row mb-4">
                     <div class="form-group">
                         <label class="px-2 fw-bold">申请住房补贴金额</label>
-                        大写：<input id="big" type="text" class="form-control-color"
+                        大写：<input id="big" type="text" disabled class="form-control-color"
                                   style="width: 300px; color: #212529; border: 1px solid #ced4da; border-radius: .25rem;">
-                        小写：<input id="small" class="form-control-color" type="text"
-                                  style="width: 300px; color: #212529; border: 1px solid #ced4da; border-radius: .25rem;">
+                        小写：<input id="small" class="form-control-color" type="number"
+                                  autocomplete="off" style="width: 300px; color: #212529; border: 1px solid #ced4da; border-radius: .25rem;">
                     </div>
                 </div>
 
@@ -217,6 +212,7 @@
 <script src="../static/js/bootstrap-datepicker.min.js" th:src="@{/js/bootstrap-datepicker.min.js}"></script>
 <script src="../static/js/bootstrap-datepicker.zh-CN.min.js" th:src="@{/js/bootstrap-datepicker.zh-CN.min.js}"></script>
 <script src="../static/js/city.js" th:src="@{/js/city.js}"></script>
+<script src="../static/js/form.js" th:src="@{/js/form.js}"></script>
 <script>
     $("#inputDate").datepicker({
         minViewMode: 'months',
@@ -265,19 +261,6 @@
             document.getElementById("year").value = sum;
         }
     });
-    $('#print').click(function () {
-        $.ajax({
-            //跳转 url
-            url: "/print",
-            type: "Get",
-            datatype: "HTML",
-            success: function (data) {
-                alert(data)
-
-            }
-        })
-    });
-
 </script>
 </body>
 </html>

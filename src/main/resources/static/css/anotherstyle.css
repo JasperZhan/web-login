@@ -25,3 +25,11 @@ a {
     color: black;
     text-decoration: none;
 }
+
+.container input::-webkit-outer-spin-button,
+.container input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.container input[type='number']{
+    -moz-appearance: textfield;
+}
