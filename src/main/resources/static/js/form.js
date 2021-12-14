@@ -27,7 +27,8 @@ function getInfo() {
     } else if (sexStr === '女') {
         sex = 1
     }
-    var inputDate = $('#inputDate').val();
+    var inputDate = $('#inputDate').val()+"-01日";
+    var str1 = inputDate.replace('年','-').replace('月','-').replace('日','');
     var options1 = $('#pro option:selected');
     var pro = options1.val();
     var options2 = $('#city option:selected');
@@ -49,8 +50,10 @@ function getInfo() {
     var applicationCategory = $("[name='category']:checked").val();
     var phone = $('#tel').val();
     var signingOfWorkContract = $("[name='work_status']:checked").val();
-    var yearsOfContractSigningInHuizhou = $('#work_date').val();
-    var settlementProceduresDate = $('#home_date').val();
+    var yearsOfContractSigningInHuizhou = $('#work_date').val()+"-01日";
+    var str2 = inputDate.replace('年','-').replace('月','-').replace('日','');
+    var settlementProceduresDate = $('#home_date').val()+"-01日";
+    var str3 = inputDate.replace('年','-').replace('月','-').replace('日','');
     var settlementProceduresLocal = $('#location').val();
     var amountOfHousingApplication = $('#small').val();
     var amountOfHousingApplicationB = $('#big').val();
@@ -58,7 +61,7 @@ function getInfo() {
     var para = {
         name: name,
         sex: sex,
-        birthday: inputDate+"-01",
+        inputDate: str1,
         nativePlace: nativePlace,
         workUnitAndPosition: workUnitAndPosition,
         education: education,
@@ -70,8 +73,8 @@ function getInfo() {
         applicationCategory: applicationCategory,
         phone: phone,
         signingOfWorkContract: signingOfWorkContract,
-        yearsOfContractSigningInHuizhou: yearsOfContractSigningInHuizhou+"-01",
-        settlementProceduresDate: settlementProceduresDate+"-01",
+        yearsOfContractSigningInHuizhou: str2,
+        settlementProceduresDate: str3,
         settlementProceduresLocal: settlementProceduresLocal,
         amountOfHousingApplication: amountOfHousingApplication,
         amountOfHousingApplicationB: amountOfHousingApplicationB,
@@ -82,16 +85,25 @@ function getInfo() {
 
 $('#save_info').click(function () {
     var para = getInfo();
-    $.ajax({
-        //跳转 url
-        url: "/form/save",
-        type: "Post",
-        data: para,
-        datatype: "HTML",
-        success: function (data) {
-            console.log(data)
-        }
-    })
+    if (para.name != null && para.sex != null && para.inputDate != null && para.nativePlace != null && para.workUnitAndPosition != null
+        && para.education != null && para.academicDegree != null && para.major != null && para.technicalTitle != null
+        && para.homeAddress != null && para.officeTelephone != null && para.applicationCategory != null && para.phone != null
+        && para.signingOfWorkContract != null && para.yearsOfContractSigningInHuizhou != null && para.settlementProceduresDate != null
+        && para.settlementProceduresLocal != null && para.amountOfHousingApplication != null
+        && para.amountOfHousingApplicationB != null && para.reasonsAndBasisForApplication != null) {
+        $.ajax({
+            //跳转 url
+            url: "",
+            type: "Post",
+            data: para,
+            datatype: "HTML",
+            success: function (data) {
+                console.log(data)
+            }
+        })
+    } else {
+        alert("字段不能为空，请仔细检查");
+    }
 })
 
 function transCnMoney(number) {
