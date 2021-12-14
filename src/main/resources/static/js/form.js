@@ -93,7 +93,7 @@ $('#save_info').click(function () {
         && para.amountOfHousingApplicationB != null && para.reasonsAndBasisForApplication != null) {
         $.ajax({
             //跳转 url
-            url: "",
+            url: "/form/save",
             type: "Post",
             data: para,
             datatype: "HTML",
@@ -102,7 +102,7 @@ $('#save_info').click(function () {
             }
         })
     } else {
-        alert("字段不能为空，请仔细检查");
+        $("#staticBackdrop1").modal("show");
     }
 })
 
