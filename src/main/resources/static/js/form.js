@@ -61,7 +61,7 @@ function getInfo() {
     var para = {
         name: name,
         sex: sex,
-        inputDate: str1,
+        birthday: str1,
         nativePlace: nativePlace,
         workUnitAndPosition: workUnitAndPosition,
         education: education,
@@ -93,11 +93,12 @@ $('#save_info').click(function () {
         && para.amountOfHousingApplicationB != null && para.reasonsAndBasisForApplication != null) {
         $.ajax({
             //跳转 url
-            url: "",
+            url: "/form/save",
             type: "Post",
             data: para,
             datatype: "HTML",
             success: function (data) {
+                eval(data)
                 console.log(data)
             }
         })
