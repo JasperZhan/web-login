@@ -103,7 +103,7 @@ $('#save_info').click(function () {
             }
         })
     } else {
-        alert("字段不能为空，请仔细检查");
+        $("#staticBackdrop1").modal("show");
     }
 })
 
