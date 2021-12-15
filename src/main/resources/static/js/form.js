@@ -61,7 +61,7 @@ function getInfo() {
     var para = {
         name: name,
         sex: sex,
-        inputDate: str1,
+        birthday: str1,
         nativePlace: nativePlace,
         workUnitAndPosition: workUnitAndPosition,
         education: education,
@@ -85,7 +85,7 @@ function getInfo() {
 
 $('#save_info').click(function () {
     var para = getInfo();
-    if (para.name != null && para.sex != null && para.inputDate != null && para.nativePlace != null && para.workUnitAndPosition != null
+    if (para.name != null && para.sex != null && para.birthday != null && para.nativePlace != null && para.workUnitAndPosition != null
         && para.education != null && para.academicDegree != null && para.major != null && para.technicalTitle != null
         && para.homeAddress != null && para.officeTelephone != null && para.applicationCategory != null && para.phone != null
         && para.signingOfWorkContract != null && para.yearsOfContractSigningInHuizhou != null && para.settlementProceduresDate != null

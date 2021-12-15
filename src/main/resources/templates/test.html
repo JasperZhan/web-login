@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>惠州市高级人才住房补贴申领表</title>
+    <style>
+        tr{
+            height: 42px;
+        }
+        td{
+            width: 70px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+<p>附件5：</p>
+<h2 align="center">惠州市高级人才住房补贴申领表</h2>
+<table border="1" align="center" cellspacing="0" cellpadding="10">
+    <tr>
+        <td align="center">姓名</td>
+        <td></td>
+        <td align="center">性别</td>
+        <td></td>
+        <td align="center">出生年月</td>
+        <td></td>
+        <td align="center">籍贯</td>
+        <td></td>
+<!--        <td rowspan="4"></td>-->
+    </tr>
+    <tr>
+        <td align="center">工作单位及职务</td>
+        <td colspan="7"></td>
+        <!-- <td></td> -->
+    </tr>
+    <tr>
+        <td align="center">学历</td>
+        <td></td>
+        <td align="center">学位</td>
+        <td></td>
+        <td align="center">专业</td>
+        <td></td>
+        <td align="center">技术职称</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>家庭住址（惠州）</td>
+        <td colspan="4"></td>
+        <td align="center">办公电话</td>
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td>申请类别</td>
+        <td colspan="4">
+            博士<input type="checkbox" name="check1" value="博士" id="doctor">、
+            正高职称<input type="checkbox" name="check2" value="正高职称" id="senior">、
+            博士后<input type="checkbox" name="check3" value="博士后" id="post-doctoral">
+        </td>
+        <td align="center">手机</td>
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td>工作合同签订情况</td>
+        <td colspan="7">
+            <input type="checkbox" name="check4" value="已和企事业单位签订 3 年以上工作合同" id="one">已和企事业单位签订 3 年以上工作合同
+            <br>
+            <input type="checkbox" name="check5" value="被机关事业单位接收录用" id="two">被机关事业单位接收录用
+        </td>
+    </tr>
+    <tr>
+        <td>在惠签约工作年限</td>
+        <td colspan="7">&#12288;&#12288;&#12288;&#12288;年&#12288;&#12288;&#12288;月开始（签约）在惠工作，至今累计在惠工作&#12288;&#12288;&#12288;&#12288;年。</td>
+    </tr>
+    <tr>
+        <td>落户手续办理情况</td>
+        <td colspan="7">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;年&#12288;&#12288;&#12288;月已在惠州市&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;派出所办理户籍迁移手续。</td>
+    </tr>
+    <tr>
+        <td>申请住房补贴金额</td>
+        <td colspan="7">大写：&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;小写：</td>
+    </tr>
+    <tr>
+        <td>
+            <p style="margin:20px;">申请理由和依据</p>
+        </td>
+        <td colspan="8">
+            <p style="width: fit-content; position: relative; left: 230px; top: 69px;">
+                申请人签字：&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;年&#12288;&#12288;&#12288;月&#12288;&#12288;&#12288;日
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">用人<br>单位<br>意见</td>
+        <td colspan="2">&#12288;&#12288;经我单位认真审核，所提供资料真实有效，符合申领高级人才住房补贴条件。<br>&#12288;&#12288;同意申报。<br>&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;（盖章）</td>
+        <td>县（区）组织部或市直以上单位人力资源管理部门意见</td>
+        <td colspan="2">
+            <p style="width: fit-content; position: relative; left: 30px; top: 50px;">
+                &#12288;&#12288;&#12288;&#12288;(盖章)
+            </p>
+        </td>
+        <td align="center">市人才<br>办意见</td>
+        <td colspan="2">
+            <p style="width: fit-content; position: relative; left: 30px; top: 38px;">
+                &#12288;&#12288;&#12288;&#12288;&#12288;&#12288;(盖章)
+            </p>
+        </td>
+    </tr>
+</table>
+<script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script>
+    $(":checkbox").click(function(){
+        $(this).attr("checked",true);//设置当前选中checkbox的状态为checked
+        $(this).siblings().attr("checked",false); //设置当前选中的checkbox同级(兄弟级)其他checkbox状态为未选中
+    });
+</script>
+</body>
+</html>
