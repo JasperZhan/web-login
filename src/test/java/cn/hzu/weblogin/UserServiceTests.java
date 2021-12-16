@@ -1,8 +1,11 @@
 package cn.hzu.weblogin;
 
+import cn.dev33.satoken.secure.SaSecureUtil;
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hzu.weblogin.model.Result;
 import cn.hzu.weblogin.model.User;
 import cn.hzu.weblogin.service.UserService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,9 +23,9 @@ public class UserServiceTests {
     @Test
     public void registerByTelTest() {
         User user = new User();
-        user.setTel("18124993036");
-        user.setPassword("654321");
-        Result<User> result = null;
+        user.setTel("13202182025");
+        user.setPassword("123456abc");
+        Result<User> result;
         result = userService.registerByTel(user);
         result.printResult();
     }

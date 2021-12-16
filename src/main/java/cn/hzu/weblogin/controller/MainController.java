@@ -1,5 +1,6 @@
 package cn.hzu.weblogin.controller;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hzu.weblogin.model.Result;
 import cn.hzu.weblogin.model.User;
 import cn.hzu.weblogin.model.vo.UserInfo;
@@ -36,7 +37,11 @@ public class MainController {
         // 为了防止用户在未登录的情况下进入主页面，必须先判断用户是否已经登录
         // 如果用户已经登录，在登录控制层里面，登录完成会完成 session 的 is_login 写入
         // 未登录用户返回 登录页面
-        if (session.getAttribute("is_login") == null) {
+//        if (session.getAttribute("is_login") == null) {
+//            System.out.println("用户未登录");
+//            return "redirect:login";
+//        }
+        if (!StpUtil.isLogin()) {
             System.out.println("用户未登录");
             return "redirect:login";
         }
@@ -44,7 +49,9 @@ public class MainController {
         // 用户已登录
         // 获取当前已经登录的用户id
         User user = new User();
-        user.setUserId((Integer) session.getAttribute("user_id"));
+        //user.setUserId((Integer) session.getAttribute("user_id"));
+        System.out.println(StpUtil.getLoginId());
+        user.setUserId(StpUtil.getLoginIdAsInt());
         // 获取当前用户的登录信息
         Result<User> result = userService.getUser(user);
         user = result.getData();

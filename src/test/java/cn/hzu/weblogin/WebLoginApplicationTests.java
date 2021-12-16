@@ -34,10 +34,10 @@ class WebLoginApplicationTests {
 
   }
 
-  @Test
-  void testInsert() {
-    user.setTel("18144601204");
-    user.setPassword("1111111");
-    userDao.add(user);
-  }
+//  @Test
+//  void testInsert() {
+//    user.setTel("18144601204");
+//    user.setPassword("1111111");
+//    userDao.add(user);
+//  }
 }

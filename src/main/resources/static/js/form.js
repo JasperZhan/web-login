@@ -1,7 +1,7 @@
 $('#print').click(function () {
     $.ajax({
         //跳转 url
-        url: "/print",
+        url: "/form/printPdf",
         type: "Get",
         datatype: "HTML",
         success: function (data) {
@@ -85,7 +85,7 @@ function getInfo() {
 
 $('#save_info').click(function () {
     var para = getInfo();
-    if (para.name != null && para.sex != null && para.inputDate != null && para.nativePlace != null && para.workUnitAndPosition != null
+    if (para.name != null && para.sex != null && para.birthday != null && para.nativePlace != null && para.workUnitAndPosition != null
         && para.education != null && para.academicDegree != null && para.major != null && para.technicalTitle != null
         && para.homeAddress != null && para.officeTelephone != null && para.applicationCategory != null && para.phone != null
         && para.signingOfWorkContract != null && para.yearsOfContractSigningInHuizhou != null && para.settlementProceduresDate != null
@@ -98,7 +98,7 @@ $('#save_info').click(function () {
             data: para,
             datatype: "HTML",
             success: function (data) {
-                eval(data)
+                // eval(data)
                 console.log(data)
             }
         })

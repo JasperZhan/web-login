@@ -1,5 +1,6 @@
 package cn.hzu.weblogin.controller;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hzu.weblogin.model.Result;
 import cn.hzu.weblogin.model.User;
 import cn.hzu.weblogin.model.vo.UserInfo;
@@ -63,10 +64,13 @@ public class LoginController {
                 break;
         }
 
+        assert result != null;
         if (result.isSuccess()) {
-            session.setAttribute("user_id", result.getData().getUserId());
-            session.setAttribute("is_login", true);
-            retStr = "location.href='/main'";
+            StpUtil.login(result.getData().getUserId());
+            System.out.println(result.getData().getUserId());
+//            session.setAttribute("user_id", );
+//            session.setAttribute("is_login", true);
+            retStr = "location.href='/form'";
         } else {
             retStr = "alert('" + result.getMessage() + "')";
         }
@@ -83,7 +87,8 @@ public class LoginController {
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
         System.out.println("有");
-        session.invalidate();
+//        session.invalidate();
+        StpUtil.logout();
         return "redirect:login";
     }
 }

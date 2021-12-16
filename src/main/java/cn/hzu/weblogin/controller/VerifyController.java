@@ -1,5 +1,6 @@
 package cn.hzu.weblogin.controller;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hzu.weblogin.model.Result;
 import cn.hzu.weblogin.model.User;
 import cn.hzu.weblogin.model.vo.UserInfo;
@@ -60,11 +61,15 @@ public class VerifyController {
      */
     private boolean verifyStatus(HttpSession session) {
         //用户未登录
-        if (session.getAttribute("is_login") == null) {
+        if (!StpUtil.isLogin()) {
             return false;
         }
+//        if (session.getAttribute("is_login") == null) {
+//
+//        }
         User user = new User();
-        user.setUserId((Integer) session.getAttribute("user_id"));
+//        user.setUserId((Integer) session.getAttribute("user_id"));
+        user.setUserId(StpUtil.getLoginIdAsInt());
         Result<User> result = userService.getUser(user);
         if (result.isSuccess()) {
             // 用户已认证
